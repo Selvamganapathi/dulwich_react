@@ -3,6 +3,7 @@ version: 0.2
 env:
   variables:
     S3_BUCKET: 'dulwich'
+    CF_DISTRIBUTION_ID: 'E1IKLX5TA1PHYY'
 
 phases:
   install:
@@ -11,10 +12,12 @@ phases:
     commands:
       - echo "Installing specific npm version..."
       - npm install -g npm@10.8.2
+
   pre_build:
     commands:
       - echo "Installing project dependencies..."
       - npm install
+
   build:
     commands:
       - echo "Checking branch main"
@@ -26,6 +29,8 @@ phases:
   post_build:
     commands:
       - echo "Build phase complete."
+      - echo "Creating CloudFront invalidation..."
+      - aws cloudfront create-invalidation --distribution-id $CF_DISTRIBUTION_ID --paths "/*"
 
 cache:
   paths:
