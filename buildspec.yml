@@ -1,0 +1,32 @@
+version: 0.2
+
+env:
+  variables:
+    S3_BUCKET: 'dulwich'
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo "Installing specific npm version..."
+      - npm install -g npm@10.8.2
+  pre_build:
+    commands:
+      - echo "Installing project dependencies..."
+      - npm install
+  build:
+    commands:
+      - echo "Checking branch main"
+      - echo "Running build script..."
+      - npm run build
+      - echo "Deploying to S3 bucket $S3_BUCKET"
+      - aws s3 sync build/ s3://$S3_BUCKET/ --delete
+
+  post_build:
+    commands:
+      - echo "Build phase complete."
+
+cache:
+  paths:
+    - '/root/.npm/**/*'
