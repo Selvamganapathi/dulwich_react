@@ -23,7 +23,7 @@ function Footer({ sectionRefs, isVisible, availableSchools, selectedSchool, setS
               />
               <div>
                 <h2 className="text-base font-semibold">
-                  DULWICH COLLEGE | SHANGHAI PUDONG |
+                  DULWICH COLLEGE INTERNATIONAL
                 </h2>
                 <p className="text-sm text-gray-300">上海德威外籍人员子女学校（浦东）</p>
               </div>
