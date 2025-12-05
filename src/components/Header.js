@@ -190,6 +190,7 @@ function Header({ selectedSchool, availableSchools, setSelectedSchool, setSelect
                 style={{ backgroundColor: '#D30013' }}
                 onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#B8000F'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#D30013'; }}
+                
               >
                 Apply Now
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
